@@ -1,5 +1,5 @@
 provider "azurerm" {
-  feature {}
+  features {}
 }
 
 resource "azurerm_resource_group" "resource_group" {
