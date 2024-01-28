@@ -26,14 +26,14 @@ stages:
         containerRegistry: 'Docker-Connection'
         repository: 'codedeveloperaccess/pipelineservice'
         command: 'buildAndPush'
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        Dockerfile: '$(System.DefaultWorkingDirectory)/Dockerfile'
         tags: '$(tag)'
   - job: copyfile
     dependsOn: Build
     steps:
     - task: CopyFiles@2
       inputs:
-        SourceFolder: $(Build.SourcesDirectory)
+        SourceFolder: $(System.DefaultWorkingDirectory)
         Contents: '**/*.yaml'
         TargetFolder: $(Build.ArtifactStagingDirectory)
   - job: Publish
