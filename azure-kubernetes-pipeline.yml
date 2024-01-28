@@ -38,3 +38,8 @@ steps:
     commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(public_key.SecureFilePath)'
     allowTelemetryCollection: true
     providerAwsRegion: 'westeurope'
+- task: TerraformCLI@2
+  inputs:
+    command: 'destroy'
+    workingDirectory: '$(System.DefaultWorkingDirectory)/configuration/iaac/azure/kubernetes'
+    environmentServiceName: 'azure_subscription'
