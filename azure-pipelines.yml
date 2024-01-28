@@ -33,14 +33,14 @@ stages:
     steps:
     - task: CopyFiles@2
       inputs:
-        SourceFolder: '$(Build.SourcesDirectory)'
+        SourceFolder: $(Build.SourcesDirectory)
         Contents: '**/*.yaml'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+        TargetFolder: $(Build.ArtifactStagingDirectory)
   - job: Publish
     dependsOn: copyfile
     steps:
     - task: PublishBuildArtifacts@1
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        PathtoPublish: $(Build.ArtifactStagingDirectory)
         ArtifactName: 'drop'
         publishLocation: 'Container'
