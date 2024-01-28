@@ -30,3 +30,10 @@ steps:
     backendAzureRmContainerName: 'storageacctspriyamcontainer'
     backendAzureRmKey: 'kubernetes-terraform.tfstate'
     allowTelemetryCollection: true
+- task: TerraformCLI@2
+  inputs:
+    command: 'apply'
+    environmentServiceName: 'azure_subscription'
+    commandOptions: '-var client_id=$(client_id) -var client_secret=$(client_secret) -var ssh_public_key=$(public_key.SecureFilePath)'
+    allowTelemetryCollection: true
+    providerAwsRegion: 'westeurope'
