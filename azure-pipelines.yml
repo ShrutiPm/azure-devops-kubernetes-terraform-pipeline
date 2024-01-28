@@ -29,6 +29,7 @@ stages:
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
         tags: '$(tag)'
   - job: copyfile
+    dependsOn: Build
     steps:
     - task: CopyFiles@2
       inputs:
@@ -36,6 +37,7 @@ stages:
         Contents: '**/*.yaml'
         TargetFolder: '$(Build.ArtifactStagingDirectory)'
   - job: Publish
+    dependsOn: copyfile
     steps:
     - task: PublishBuildArtifacts@1
       inputs:
